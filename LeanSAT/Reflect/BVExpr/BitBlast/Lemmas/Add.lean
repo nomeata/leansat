@@ -21,6 +21,8 @@ theorem denote_mkFullAdderOut (assign : Assignment) (aig : AIG BVBit) (input : F
     Bool.bne_left_inj]
   rw [LawfulOperator.denote_mem_prefix (f := mkXorCached)]
 
+-- deterministic timeout: #check mkFullAdderCarry.eq_1
+
 @[simp]
 theorem denote_mkFullAdderCarry (assign : Assignment) (aig : AIG BVBit) (input : FullAdderInput aig)
     : ⟦mkFullAdderCarry aig input, assign.toAIGAssignment⟧
@@ -35,7 +37,7 @@ theorem denote_mkFullAdderCarry (assign : Assignment) (aig : AIG BVBit) (input :
            ⟦aig, input.lhs, assign.toAIGAssignment⟧
            ⟦aig, input.rhs, assign.toAIGAssignment⟧)
     := by
-  simp only [mkFullAdderCarry, Ref_cast', Int.reduceNeg, denote_mkOrCached,
+  simp only [mkFullAdderCarry.eq_def, Ref_cast', Int.reduceNeg, denote_mkOrCached,
     LawfulOperator.denote_input_entry, denote_mkAndCached, denote_projected_entry',
     denote_mkXorCached, denote_projected_entry]
   conv =>

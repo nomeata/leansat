@@ -359,7 +359,7 @@ theorem encounteredBoth_entails_unsat {n : Nat} (c : DefaultClause n) (assignmen
     (l : Literal (PosFin n)) (_ : l ∈ c.clause) :
     (reduce_fold_fn assignment res l) = encounteredBoth → unsatisfiable (PosFin n) assignment := by
     intro h
-    rw [reduce_fold_fn] at h
+    rw [reduce_fold_fn.eq_def] at h
     split at h <;>
       [
         exact ih rfl;
@@ -391,7 +391,7 @@ theorem reduce_fold_fn_preserves_induction_motive {c_arr : Array (Literal (PosFi
   simp only [reduce_postcondition_induction_motive, Fin.getElem_fin, forall_exists_index, and_imp, Prod.forall]
   constructor
   . intro h p
-    rw [reduce_fold_fn] at h
+    rw [reduce_fold_fn.eq_def] at h
     split at h
     . simp only at h
     . split at h
@@ -443,7 +443,7 @@ theorem reduce_fold_fn_preserves_induction_motive {c_arr : Array (Literal (PosFi
       . simp only at h
     . simp only at h
   . intro i b h p hp j j_lt_idx_add_one p_entails_c_arr_j
-    rw [reduce_fold_fn] at h
+    rw [reduce_fold_fn.eq_def] at h
     split at h
     . simp only at h
     . split at h
